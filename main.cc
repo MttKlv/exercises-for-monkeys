@@ -12,25 +12,43 @@
 Session* Session::_instance = NULL;
 Session* s;
 
-Exercise e;
+Exercise* e;
 
-static Basic basic(100);
 using namespace std;
 
-void mouse(int button, int state, int x, int y);
 void keyboard(unsigned char key, int xmouse, int ymouse);
+void mouse(int button, int state, int x, int y);
+bool initApp(int argc, char *argv[]);
 void reshape (int wdth, int heght);
 void display();
-bool initApp(int argc, char *argv[]);
-
+void menu();
 
 int
 main (int argc, char *argv[])
 {
-  
-  Basic basic(100);
-  bool b = initApp( argc, argv);
+  menu();
+
+  bool b = initApp(argc, argv);
   return b;
+}
+
+void menu(){
+  int choice = 0;
+  printf("\t1 - Cible au centre, ne bouge pas\n");
+  printf("\t2 - Cible qui se déplace\n");
+  printf("\t3 - Choix entre animaux ou objets\n");
+  printf("\tSelection => ");
+  cin >> choice;
+
+  switch(choice){
+  case 1:
+    e = new Basic(100);
+    break;
+  default:
+    e = new Basic(100);
+    break;
+  }
+
 }
 
 bool
@@ -58,7 +76,7 @@ void
 mouse(int button, int state, int x, int y){
   if (s->getNbFrame()>30){
     
-    basic.mouse(button, state, x, y);
+    e->mouse(button, state, x, y);
 
     s->reset();
   }
@@ -73,6 +91,7 @@ keyboard (unsigned char key, int xmouse, int ymouse){
     break;
   }
 }
+
 void
 reshape (int wdth, int heght)
 {
@@ -87,7 +106,7 @@ display()
   glClearColor(0, 0, 0, 0);
   glLoadIdentity ();
 
-  basic.display();
+  e->display();
 
   s->addFrame();
 
@@ -97,7 +116,7 @@ display()
 
 
 
-/********** BLABLA ********
+/**********...pour les textures... ********
 
   char* pPath;
   pPath = getenv ("session");

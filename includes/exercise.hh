@@ -5,10 +5,9 @@ class Exercise{
 public:
   Exercise();
   ~Exercise();
-  
-protected:
   virtual void mouse(int button, int state, int x, int y){};
   virtual void display(){};
+
 };
 
 #endif
