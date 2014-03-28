@@ -8,15 +8,16 @@
 class Basic : public Exercise{
 
 public:
-  Basic(int px);
+  Basic(int px, int tpe);
   ~Basic();
   void mouse(int button, int state, int x, int y);
   void display();
 
 private:
   int _pxl;
+  int _type;
 };
 
-
+  
 #endif
 

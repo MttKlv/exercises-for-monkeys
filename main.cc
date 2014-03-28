@@ -34,18 +34,19 @@ main (int argc, char *argv[])
 
 void menu(){
   int choice = 0;
+  /*
   printf("\t1 - Cible au centre, ne bouge pas\n");
   printf("\t2 - Cible qui se déplace\n");
   printf("\t3 - Choix entre animaux ou objets\n");
   printf("\tSelection => ");
-  cin >> choice;
-
+  cin >> choice; 
+  */ 
   switch(choice){
   case 1:
-    e = new Basic(100);
+    e = new Basic(100,1);
     break;
   default:
-    e = new Basic(100);
+    e = new Basic(100,);
     break;
   }
 
@@ -55,9 +56,9 @@ bool
 initApp(int argc, char *argv[]){
   glutInit (&argc, argv);
   glutInitDisplayMode (GLUT_RGBA | GLUT_SINGLE | GLUT_DOUBLE);
-  glutInitWindowSize (1920, 1080);
+  //glutInitWindowSize (1920, 1080);
   glutCreateWindow (""); // name
-  glutGameModeString("1920x1080:32@60");
+  // glutGameModeString("1920x1080:32@60");
   //  glutEnterGameMode();
   glutFullScreen();
   glutReshapeFunc (&reshape);
@@ -103,9 +104,15 @@ display()
 {
   s->time();
 
-  glClearColor(0, 0, 0, 0);
+  glClear(GL_COLOR_BUFFER_BIT);
+  glClearColor(0,0,0, 1);
+
   glLoadIdentity ();
 
+  // gluOrtho2D(0,s->getHeight(),0,s->getWidth());
+
+  //  gluPerspective(65.,(float) s->getWidth()/s->getHeight(),0.1,200.0);
+  glMatrixMode(GL_MODELVIEW);
   e->display();
 
   s->addFrame();

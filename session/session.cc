@@ -35,13 +35,16 @@ Session::reshape(int wdth, int heght){
   glClear(GL_COLOR_BUFFER_BIT);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-}
+  //  gluPerspective(65.,(double) _width/_height,1.0,200.0);
+  glMatrixMode(GL_MODELVIEW);
 
+}
+ 
 void 
 Session::reset(){
   _nbFrame = 0;
 }
-
+ 
 Session*
 Session::getInstance(int wdth, int heght){
   _instance = new Session(); 
