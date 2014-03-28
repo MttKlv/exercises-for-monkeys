@@ -33,7 +33,7 @@ main (int argc, char *argv[])
 }
 
 void menu(){
-  int choice = 0;
+  int choice = 2;
   /*
   printf("\t1 - Cible au centre, ne bouge pas\n");
   printf("\t2 - Cible qui se déplace\n");
@@ -43,10 +43,10 @@ void menu(){
   */ 
   switch(choice){
   case 1:
-    e = new Basic(100,1);
+    e = new Basic(100,0,-1);
     break;
-  default:
-    e = new Basic(100,);
+  case 2:
+    e = new Basic(100,0,0);
     break;
   }
 
@@ -56,17 +56,18 @@ bool
 initApp(int argc, char *argv[]){
   glutInit (&argc, argv);
   glutInitDisplayMode (GLUT_RGBA | GLUT_SINGLE | GLUT_DOUBLE);
-  //glutInitWindowSize (1920, 1080);
+  // glutInitWindowSize (1920, 1080);
   glutCreateWindow (""); // name
   // glutGameModeString("1920x1080:32@60");
-  //  glutEnterGameMode();
+  // glutEnterGameMode();
   glutFullScreen();
   glutReshapeFunc (&reshape);
   glutDisplayFunc (&display);
   glutMouseFunc(&mouse);
   glutKeyboardFunc(&keyboard);
  
-  s = Session::getInstance(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
+  s = Session::getInstance(glutGet(GLUT_WINDOW_WIDTH),
+			   glutGet(GLUT_WINDOW_HEIGHT));
 
   glutMainLoop();
 
@@ -113,7 +114,10 @@ display()
 
   //  gluPerspective(65.,(float) s->getWidth()/s->getHeight(),0.1,200.0);
   glMatrixMode(GL_MODELVIEW);
-  e->display();
+  
+  if (s->getNbFrame()>30){
+    e->display();
+  }
 
   s->addFrame();
 
