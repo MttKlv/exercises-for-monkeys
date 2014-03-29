@@ -47,6 +47,7 @@ void menu(){
     break;
   case 2:
     e = new Basic(100,0,0);
+    e->menu();
     break;
   }
 

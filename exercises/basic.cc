@@ -1,6 +1,5 @@
 #include "../includes/basic.hh"
 
-
 Basic::Basic(int px, int tpe, int rndom){
   _pxl   = px;
   _type  = tpe;
@@ -107,12 +106,12 @@ Basic::display(){
     glPopMatrix();
   }
   else{
-    glOrtho(-1.0,
-	     1.0,
-	    -1.0*(double) s->getHeight()/s->getWidth(),
-	     1.0*(double) s->getHeight()/s->getWidth(),
+    glOrtho(-2.0,
+	     2.0,
+	    -2.0*(double) s->getHeight()/s->getWidth(),
+	     2.0*(double) s->getHeight()/s->getWidth(),
 	     0.0,
-	     1.0);
+	     2.0);
     int 
       slices    = 20,
       ii        = 0;
@@ -131,7 +130,7 @@ Basic::display(){
       x = radius * cos(angle*ii);
       y = radius * sin(angle*ii);
       
-      glColor3ub(255,0,0);
+      glColor3ub(_R,_G,_B);
       
       glVertex3f(0.0,0.0,0.0);
       glVertex3f(previousX, previousY,0.0);
@@ -144,6 +143,26 @@ Basic::display(){
     glEnd();
 
   }
+}
+
+void
+Basic::menu(){
+  printf("\tType de forme : 0 cercle | 1 carré => ");
+  cin >> _type;
+  if (_type==0){
+    printf("\tRayon => ");
+  }
+  else{
+    printf("\tTaille => ");
+  }
+  cin >> _pxl;
+  printf("\tCouleur RGB\n");
+  printf("\tR => ");
+  cin >> _R;
+  printf("\tG => ");
+  cin >> _G;
+  printf("\tB => ");
+  cin >> _B;
 }
 
 void

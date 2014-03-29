@@ -7,18 +7,22 @@
 
 class Basic : public Exercise{
 public:
-Basic(int px, int tpe, int rndom);
-~Basic();
-void mouse(int button, int state, int x, int y);;
-void display();
-void reset();
+  Basic(int px, int tpe, int rndom);
+  ~Basic();
+  void mouse(int button, int state, int x, int y);;
+  void display();
+  void reset();
+  void menu();
 
 private:
-int _pxl;
-int _type;
-int _random;
+  float _pxl;
+  int _type;
+  int _random;
+  int _R;
+  int _G;
+  int _B;
 
-const float DEP = 0.75;
+  const float DEP = 0.75;
 
 };
 
