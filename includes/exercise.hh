@@ -13,7 +13,7 @@ class Exercise{
 public:
   Exercise();
   ~Exercise();
-  virtual void mouse(int button, int state, int x, int y){};
+  virtual bool mouse(int button, int state, int x, int y){return false;};
   virtual void display(){};
   virtual void reset(){};
   virtual void menu(){};

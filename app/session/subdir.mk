@@ -15,10 +15,8 @@ CC_DEPS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 session/%.o: ../session/%.cc
-	@echo 'Building file: $<'
-	@echo 'Invoking: GCC C++ Compiler'
-	g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o"$@" "$<"
-	@echo 'Finished building: $<'
-	@echo ' '
-
-
+	@echo -e 'Building file [$<] : \t\c'
+#	@echo 'Invoking: GCC C++ Compiler'
+	@g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o"$@" "$<"
+	@echo -e '\033[32mOK\033[0m'
+#	@echo 'Finished building: $<'

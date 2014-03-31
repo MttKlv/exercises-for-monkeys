@@ -79,9 +79,11 @@ void
 mouse(int button, int state, int x, int y){
   if (s->getNbFrame()>30){
     
-    e->mouse(button, state, x, y);
-
-    s->reset();
+    bool rep = false;
+    rep = e->mouse(button, state, x, y);
+    if (rep){
+      s->reset();
+    }
   }
  
 }

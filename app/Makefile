@@ -43,11 +43,12 @@ all: display
 
 # Tool invocations
 display: $(OBJS) $(USER_OBJS)
-	@echo 'Building target: $@'
-	@echo 'Invoking: GCC C++ Linker'
-	g++  -o"display" $(OBJS) $(USER_OBJS) $(LIBS)
-	@echo 'Finished building target: $@'
-	@echo ' '
+	@echo -e 'Building target: $@ : \t\t\t\c'
+#	@echo 'Invoking: GCC C++ Linker'
+	@g++  -o"display" $(OBJS) $(USER_OBJS) $(LIBS)
+	@echo -e '[\033[32mDone\033[0m]'
+#	@echo 'Finished building target: $@'
+
 
 # Other Targets
 clean:
