@@ -1,11 +1,11 @@
 #include "../includes/basic.hh"
 
 Basic::Basic(int px, int tpe, int rndom):
-  DEP(0.75)
-{
+  _depX(0.75),
+  _depY(0.75){
   _pxl   = px;
   _type  = tpe;
-   _random = rndom; 
+  _random = rndom; 
 }
 
 Basic::~Basic(){
@@ -32,28 +32,28 @@ Basic::mouse(int button, int state, int x, int y){
       d = height/2+(pxl);
       break;
     case 1:
-      a = width/2-(pxl)+((DEP/2)*width);
-      b = width/2+(pxl)+((DEP/2)*width);
+      a = width/2-(pxl)+((_depX/2)*width);
+      b = width/2+(pxl)+((_depX/2)*width);
       c = height/2-(pxl);
       d = height/2+(pxl);
       break;
     case 2:
-      a = width/2-(pxl)-((DEP/2)*width);
-      b = width/2+(pxl)-((DEP/2)*width);
+      a = width/2-(pxl)-((_depX/2)*width);
+      b = width/2+(pxl)-((_depX/2)*width);
       c = height/2-(pxl);
       d = height/2+(pxl);
       break;
     case 3:
       a = width/2-(pxl);
       b = width/2+(pxl);
-      c = height/2-(pxl)-((DEP/2)*height);
-      d = height/2+(pxl)-((DEP/2)*height);
+      c = height/2-(pxl)-((_depY/2)*height);
+      d = height/2+(pxl)-((_depY/2)*height);
       break;
     case 4:
       a = width/2-(pxl);
       b = width/2+(pxl);
-      c = height/2-(pxl)+((DEP/2)*height);
-      d = height/2+(pxl)+((DEP/2)*height);
+      c = height/2-(pxl)+((_depY/2)*height);
+      d = height/2+(pxl)+((_depY/2)*height);
       break;
     }
 
@@ -79,23 +79,23 @@ Basic::display(){
   Session* s = Session::getInstance();
   
   float pxlScreen[2];
-  pxlScreen[0] = 1.0/s->getWidth() ;
+  pxlScreen[0] = 1.0/s->getWidth();
   pxlScreen[1] = 1.0/s->getHeight();
 
   glPushMatrix();
     
   switch(_random){
   case 1:
-    glTranslatef(0.75,0,0);	
+    glTranslatef(_depX,0,0);	
     break;
   case 2:
-    glTranslatef(-0.75,0,0);
+    glTranslatef(-_depX,0,0);
     break;
   case 3:
-    glTranslatef(0,0.75,0);
+    glTranslatef(0,_depY,0);
     break;
   case 4:
-    glTranslatef(0,-0.75,0);
+    glTranslatef(0,-_depY,0);
     break;
   }
     
@@ -116,12 +116,6 @@ Basic::display(){
     glPopMatrix();
   }
   else{
-    /*      glOrtho(-1.0,
-	     1.0,
-	    -1.0*(double) s->getHeight()/s->getWidth(),
-	     1.0*(double) s->getHeight()/s->getWidth(),
-	     0.0,
-	     1.0);*/
     int 
       slices    = 20,
       ii        = 0;
@@ -160,13 +154,13 @@ Basic::menu(){
   printf("\tType de forme : 0 carré | 1 cercle => ");
   cin >> _type;
   if (_type==1){
-    printf("\tRayon => ");
+    printf("\tRayon (pixel) => ");
   }
   else{
-    printf("\tTaille => ");
+    printf("\tTaille (pixel) => ");
   }
   cin >> _pxl;
-  printf("\tCouleur RGB\n");
+  printf("\tCouleur RGB (0 -> 255)\n");
   printf("\tR => ");
   cin >> _R;
   printf("\tG => ");
@@ -178,5 +172,7 @@ Basic::menu(){
 void
 Basic::reset(){
   _random = random(0,5);
+  // _depX = random();
+  //_depY = random();
 }
  

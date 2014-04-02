@@ -22,7 +22,8 @@ private:
   int _G;
   int _B;
 
-  const float DEP;
+  float _depX;
+  float _depY;
 
 };
 

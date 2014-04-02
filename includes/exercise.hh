@@ -19,6 +19,7 @@ public:
   virtual void menu(){};
 protected:
   int random(int min, int max);
+  float random(){return (float) rand()/RAND_MAX;}
 };
 
 #endif
