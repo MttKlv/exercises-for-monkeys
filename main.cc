@@ -15,6 +15,8 @@ Session* s;
 
 Exercise* e;
 
+int frame;
+
 using namespace std;
 
 void keyboard(unsigned char key, int xmouse, int ymouse);
@@ -27,13 +29,13 @@ void menu();
 int
 main (int argc, char *argv[])
 {
-  const char* path = "definition.txt";
+  const char *path = "definition.txt";
   Parser *p = new Parser(path);
   if(p->parse()){
-    printf("oui\n");
+    //   printf("oui\n");
     exit(1);
   }
-  //  printf("nop\n");
+  //    printf("nop\n");
   //exit(0);
   menu();
 
@@ -46,10 +48,9 @@ void menu(){
   
   printf("\t1 - Cible au centre, ne bouge pas\n");
   printf("\t2 - Cible qui se déplace\n");
-  printf("\t3 - Choix entre animaux ou objets\n");
+  // printf("\t3 - Choix entre animaux ou objets\n");
   printf("\tSelection => ");
   cin >> choice; 
-  
   switch(choice){
   case 1:
     e = new Basic(100,0,-1);
@@ -60,7 +61,8 @@ void menu(){
     e->menu();
     break;
   }
-
+  printf("\tTemps entre chaque essai (Frame) => ");
+  cin >> frame;
 }
 
 bool
@@ -87,7 +89,7 @@ initApp(int argc, char *argv[]){
 
 void
 mouse(int button, int state, int x, int y){
-  if (s->getNbFrame()>30){
+  if (s->getNbFrame()>frame){
     
     bool rep = false;
     rep = e->mouse(button, state, x, y);
@@ -128,7 +130,7 @@ display()
   //  gluPerspective(65.,(float) s->getWidth()/s->getHeight(),0.1,200.0);
   glMatrixMode(GL_MODELVIEW);
   
-  if (s->getNbFrame()>30){
+  if (s->getNbFrame()>frame){
     e->display();
   }
 
