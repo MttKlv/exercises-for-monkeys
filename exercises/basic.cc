@@ -25,7 +25,7 @@ Basic::mouse(int button, int state, int x, int y){
   
   if (state==0){
     switch (_random){
-    case 0:
+    case 0: case -1:
       a = width/2-(pxl);
       b = width/2+(pxl);
       c = height/2-(pxl);

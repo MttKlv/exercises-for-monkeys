@@ -8,6 +8,7 @@
 #include "includes/session.hh"
 #include "includes/exercise.hh"
 #include "includes/basic.hh"
+#include "includes/parser.hh"
 
 Session* Session::_instance = NULL;
 Session* s;
@@ -26,6 +27,14 @@ void menu();
 int
 main (int argc, char *argv[])
 {
+  const char* path = "definition.txt";
+  Parser *p = new Parser(path);
+  if(p->parse()){
+    printf("oui\n");
+    exit(1);
+  }
+  //  printf("nop\n");
+  //exit(0);
   menu();
 
   bool b = initApp(argc, argv);
@@ -34,16 +43,17 @@ main (int argc, char *argv[])
 
 void menu(){
   int choice = 2;
-  /*
+  
   printf("\t1 - Cible au centre, ne bouge pas\n");
   printf("\t2 - Cible qui se déplace\n");
   printf("\t3 - Choix entre animaux ou objets\n");
   printf("\tSelection => ");
   cin >> choice; 
-  */ 
+  
   switch(choice){
   case 1:
     e = new Basic(100,0,-1);
+    e->menu();
     break;
   case 2:
     e = new Basic(100,0,0);
