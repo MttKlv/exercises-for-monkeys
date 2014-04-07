@@ -5,6 +5,7 @@
 #include <sys/timeb.h>
 
 #include <stdio.h>
+#include "recorder.hh"
 
 class Session{
 public:
@@ -24,12 +25,13 @@ public:
   int getAppTime(){ return (_currentTime - _startTime); }
   int getWidth(){ return _width; }
   int getHeight(){ return _height; }
-
+  Recorder* getRecorder(){ return _recorder; }
   void setWidth(int wdth){ _width = wdth; } 
   void setHeight(int heght){ _height = heght; }
 
 private:
   Session();
+  Recorder* _recorder;
 
   int _startTime;
   int _currentTime;
@@ -39,6 +41,7 @@ private:
   static Session* _instance;
 
   int getTime();
+  
 };
 
 

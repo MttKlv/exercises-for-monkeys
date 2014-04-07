@@ -2,7 +2,9 @@
 
 Session::Session():
   _startTime(-1),
-  _nbFrame(0){
+  _nbFrame(0){ 
+  _recorder = new Recorder("/home/xeno1/Desktop/exercises-for-monkeys/output/");
+  _recorder->createFile();
 }
 
 Session::~Session(){

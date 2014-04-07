@@ -4,13 +4,12 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CC_SRCS += \
-../session/session.cc ../session/parser.cc
-
+../session/session.cc ../session/parser.cc  ../session/recorder.cc
 OBJS += \
-./session/session.o ./session/parser.o
+./session/session.o ./session/parser.o ./session/recorder.o
 
 CC_DEPS += \
-./session/session.d ./session/parser.d
+./session/session.d ./session/parser.d .session/recorder.d
 
 
 # Each subdirectory must supply rules for building sources it contributes

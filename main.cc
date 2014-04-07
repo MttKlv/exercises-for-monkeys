@@ -89,12 +89,22 @@ initApp(int argc, char *argv[]){
 
 void
 mouse(int button, int state, int x, int y){
-  if (s->getNbFrame()>frame){
+
+  if (state == 0){
+    if (s->getNbFrame()>frame){
     
-    bool rep = false;
-    rep = e->mouse(button, state, x, y);
-    if (rep){
-      s->reset();
+      bool rep = false;
+      rep = e->mouse(button, state, x, y);
+      if (rep){
+	s->reset();
+	s->getRecorder()->write(x, y, 1);
+      }
+      else{
+	s->getRecorder()->write(x, y, 0);
+      }
+    }
+    else{
+      s->getRecorder()->write(x, y, 0);
     }
   }
  
