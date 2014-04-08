@@ -48,9 +48,7 @@ Session::reset(){
 }
  
 Session*
-Session::getInstance(int wdth, int heght){
+Session::createInstance(){
   _instance = new Session(); 
-  _instance->setWidth(wdth);
-  _instance->setHeight(heght);
   return _instance;
 }

@@ -21,8 +21,6 @@ Exercise* e;
 
 using namespace std;
 
-int frame;
-
 void keyboard(unsigned char key, int xmouse, int ymouse);
 void mouse(int button, int state, int x, int y);
 bool initApp(int argc, char *argv[]);
@@ -36,9 +34,11 @@ main (int argc, char *argv[])
   const char *path = "definition.txt";
   Parser *p = new Parser(path);
   if(p->parse()){
+    s = Session::getInstance();
+    s->setNbFramePause(atoi(p->getVariables().at(1).c_str()));
+
     prepareExercise(p->getVariables());    
     initApp(argc, argv);  
-
 
     return EXIT_SUCCESS;
   }
@@ -75,8 +75,8 @@ initApp(int argc, char *argv[]){
   glutMouseFunc(&mouse);
   glutKeyboardFunc(&keyboard);
  
-  s = Session::getInstance(glutGet(GLUT_WINDOW_WIDTH),
-			   glutGet(GLUT_WINDOW_HEIGHT));
+  s->setWidth(glutGet(GLUT_WINDOW_WIDTH));
+  s->setHeight(glutGet(GLUT_WINDOW_HEIGHT));
 
   glutMainLoop();
 
@@ -87,7 +87,7 @@ void
 mouse(int button, int state, int x, int y){
 
   if (state == 0){
-    if (s->getNbFrame()>frame){
+    if (s->getNbFrame()>s->getNbFramePause()){
     
       bool rep = false;
       rep = e->mouse(button, state, x, y);
@@ -132,8 +132,7 @@ display()
   glLoadIdentity ();
   glMatrixMode(GL_MODELVIEW);
 
-  glutLeaveMainLoop();
-  if (s->getNbFrame()>frame){
+  if (s->getNbFrame()>s->getNbFramePause()){
     e->display();
   }
 
