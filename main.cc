@@ -1,4 +1,7 @@
-#include <GL/glut.h>
+
+#include <GL/freeglut.h>
+#include <GL/gl.h>
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +12,7 @@
 #include "includes/exercise.hh"
 #include "includes/basic.hh"
 #include "includes/parser.hh"
+#include "includes/parapin.hh"
 
 Session* Session::_instance = NULL;
 Session* s;
@@ -32,8 +36,10 @@ main (int argc, char *argv[])
   const char *path = "definition.txt";
   Parser *p = new Parser(path);
   if(p->parse()){
-    prepareExercise(p->getVariables());
+    prepareExercise(p->getVariables());    
     initApp(argc, argv);  
+
+
     return EXIT_SUCCESS;
   }
   std::cout << "parse fail" << endl;
@@ -124,12 +130,9 @@ display()
   glClearColor(0,0,0, 1);
 
   glLoadIdentity ();
-
-  // gluOrtho2D(0,s->getHeight(),0,s->getWidth());
-
-  //  gluPerspective(65.,(float) s->getWidth()/s->getHeight(),0.1,200.0);
   glMatrixMode(GL_MODELVIEW);
-  
+
+  glutLeaveMainLoop();
   if (s->getNbFrame()>frame){
     e->display();
   }

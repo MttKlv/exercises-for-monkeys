@@ -11,6 +11,7 @@ RM := rm -rf
 -include subdir.mk
 -include session/subdir.mk
 -include exercises/subdir.mk
+-include parapin/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)

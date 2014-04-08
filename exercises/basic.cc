@@ -13,7 +13,6 @@ Basic::Basic(vector<string> variables):
   _G = atoi((variables.at(6)).c_str());
   _B = atoi((variables.at(7)).c_str());
 
-  printf("coucou\n");
 }
 
 Basic::~Basic(){
