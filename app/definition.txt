@@ -1,5 +1,5 @@
-1 60 100 0 -1 255 255 0;
+1 60 1 1 100 255 0 0 0 255 0;
 
-/*********************/
+/******************       CONF         ******************/
 
-ID FRAME PIXEL TYPE RANDOM
+ID FRAMEPAUSE MODE TYPE PIXEL R G B PAUSE_R PAUSE_G PAUSE_B

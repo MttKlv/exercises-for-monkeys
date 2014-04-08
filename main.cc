@@ -34,8 +34,8 @@ main (int argc, char *argv[])
   const char *path = "definition.txt";
   Parser *p = new Parser(path);
   if(p->parse()){
-    s = Session::getInstance();
-    s->setNbFramePause(atoi(p->getVariables().at(1).c_str()));
+    s = Session::createInstance();
+    s->setNbFramePause(atoi((p->getVariables().at(1)).c_str()));
 
     prepareExercise(p->getVariables());    
     initApp(argc, argv);  
@@ -87,21 +87,24 @@ void
 mouse(int button, int state, int x, int y){
 
   if (state == 0){
-    if (s->getNbFrame()>s->getNbFramePause()){
-    
+
       bool rep = false;
       rep = e->mouse(button, state, x, y);
       if (rep){
-	s->reset();
-	s->getRecorder()->write(x, y, 1);
+	if (s->getNbFrame()>s->getNbFramePause()){
+	  s->reset();
+	  s->setParapin(true);
+	  s->getRecorder()->write(x, y, "in", "allow");
+        }
+	else{
+	  s->getRecorder()->write(x, y, "in", "disallow");
+	}
+
       }
       else{
-	s->getRecorder()->write(x, y, 0);
+	s->getRecorder()->write(x, y, "out", "");
       }
-    }
-    else{
-      s->getRecorder()->write(x, y, 0);
-    }
+
   }
  
 }
@@ -132,14 +135,21 @@ display()
   glLoadIdentity ();
   glMatrixMode(GL_MODELVIEW);
 
-  if (s->getNbFrame()>s->getNbFramePause()){
+  if (s->getParapin()==true){
+    e->displayPause();
+    if(s->getNbFrame()>s->getNbFramePause()){
+      s->setParapin(false);
+    }
+  }
+  else{
     e->display();
   }
 
-  s->addFrame();
 
   glutPostRedisplay();
   glutSwapBuffers();
+
+  s->addFrame();
 }
 
 

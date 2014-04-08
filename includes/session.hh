@@ -26,12 +26,13 @@ public:
   int getAppTime(){ return (_currentTime - _startTime); }
   int getWidth(){ return _width; }
   int getHeight(){ return _height; }
-
+  bool getParapin(){ return _parapin; }
   Recorder* getRecorder(){ return _recorder; }
+
   void setWidth(int wdth){ _width = wdth; } 
   void setHeight(int heght){ _height = heght; }
-  void setNbFramePause(int nbFP){ _nbFramePause = nbFP;}
-
+  void setNbFramePause(int nbfp){ _nbFramePause = nbfp;}
+  void setParapin(bool b){ _parapin = b; }
 private:
   Session();
   Recorder* _recorder;
@@ -43,10 +44,13 @@ private:
   int _height;
   int _width;
 
+  bool _parapin;
+
   static Session* _instance;
 
   int getTime();
   
+ 
 };
 
 

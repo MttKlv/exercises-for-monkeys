@@ -12,16 +12,16 @@ public:
   ~Basic();
   bool mouse(int button, int state, int x, int y);;
   void display();
+  void displayPause();
   void reset();
 
 private:
   float _pxl;
   int _type;
+  int _mode;
+  int _RGB[3];
+  int _pauseRGB[3];
   int _random;
-  int _R;
-  int _G;
-  int _B;
-
   float _depX;
   float _depY;
 

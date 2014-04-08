@@ -16,10 +16,12 @@ public:
   ~Exercise();
   virtual bool mouse(int button, int state, int x, int y){return false;};
   virtual void display(){};
+  virtual void displayPause(){};
   virtual void reset(){};
 protected:
   int random(int min, int max);
   float random(){return (float) rand()/RAND_MAX;}
+
 };
 
 #endif

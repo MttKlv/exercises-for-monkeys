@@ -14,7 +14,7 @@ public:
   Recorder(string pth);
   ~Recorder();
   void createFile();
-  void write(int x, int y, bool b);
+  void write(int x, int y, string pos, string auth);
 private:
   string getDateTime();
   string _path;

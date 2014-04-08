@@ -36,7 +36,7 @@ Recorder::createFile(){
 }
 
 void
-Recorder::write(int x, int y, bool b){
+Recorder::write(int x, int y, string pos, string auth){
 
   ostringstream oss;
   string file = _path + _nameFile;
@@ -44,7 +44,7 @@ Recorder::write(int x, int y, bool b){
   FILE * pfile;
   pfile = fopen(file.c_str(), "a");
   if (pfile != NULL){
-    oss << getDateTime() << " "  << x << " " << y << " : " << b << "\n";
+    oss << getDateTime() << " "  << x << " " << y << " : " << pos << " " << auth << "\n";
     string str = oss.str();
     fprintf(pfile,"%s", str.c_str());
     fclose(pfile);
