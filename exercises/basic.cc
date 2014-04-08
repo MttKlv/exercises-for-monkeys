@@ -1,11 +1,19 @@
 #include "../includes/basic.hh"
 
-Basic::Basic(int px, int tpe, int rndom):
+Basic::Basic(vector<string> variables):
   _depX(0.75),
   _depY(0.75){
-  _pxl   = px;
-  _type  = tpe;
-  _random = rndom; 
+
+  assert(variables.size()==8);
+
+  _pxl   = atoi((variables.at(2)).c_str());
+  _type  = atoi((variables.at(3)).c_str());
+  _random = atoi((variables.at(4)).c_str()); 
+  _R = atoi((variables.at(5)).c_str());
+  _G = atoi((variables.at(6)).c_str());
+  _B = atoi((variables.at(7)).c_str());
+
+  printf("coucou\n");
 }
 
 Basic::~Basic(){
@@ -106,7 +114,7 @@ Basic::display(){
     float y = (float)_pxl*(pxlScreen[1]);
 
     glBegin(GL_QUADS);
-    glColor3ub(255,0,0); 
+    glColor3ub(_R,_G,_B); 
     glVertex2f(-x,-y);
     glVertex2f(-x,y);
     glVertex2f(x,y);
@@ -147,26 +155,6 @@ Basic::display(){
     glEnd();
 
   }
-}
-
-void
-Basic::menu(){
-  printf("\tType de forme : 0 carré | 1 cercle => ");
-  cin >> _type;
-  if (_type==1){
-    printf("\tRayon (pixel) => ");
-  }
-  else{
-    printf("\tTaille (pixel) => ");
-  }
-  cin >> _pxl;
-  printf("\tCouleur RGB (0 -> 255)\n");
-  printf("\tR => ");
-  cin >> _R;
-  printf("\tG => ");
-  cin >> _G;
-  printf("\tB => ");
-  cin >> _B;
 }
 
 void

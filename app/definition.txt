@@ -1,3 +1,5 @@
-sqdsd qsdqs dsqdsdsqd
-qs    qrezrezrzerzers
-dq   qsd;
+1 60 100 0 -1 255 255 0;
+
+/*********************/
+
+ID FRAME PIXEL TYPE RANDOM

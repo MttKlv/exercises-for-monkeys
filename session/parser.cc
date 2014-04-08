@@ -13,9 +13,6 @@ Parser::~Parser(){
 bool
 Parser::parse(){
 
-  return false;
-
-
   fstream def(_path, std::fstream::in | std::fstream::out);
   streamsize nb = 100;
   char* infos = NULL;
@@ -30,11 +27,15 @@ Parser::parse(){
 	{
 	  string sub;
 	  iss >> sub;
-	  if (!sub.empty()){
-	    std::cout << "Substring: " << sub << endl;
+	  if (!sub.empty()){	     
 	    _variables.push_back(sub);
 	  }
 	} while (iss);    
+      vector<string>::iterator ii;
+      for (ii = _variables.begin(); ii != _variables.end(); ii++){
+	std::cout << *ii << endl;
+      }
+      return true;
     }
   }
   else{

@@ -46,7 +46,7 @@ Recorder::write(int x, int y, bool b){
   if (pfile != NULL){
     oss << getDateTime() << " "  << x << " " << y << " : " << b << "\n";
     string str = oss.str();
-    fprintf(pfile, str.c_str());// sizeof(string)*sizeof(str.c_str()), sizeof(str.c_str()), pfile);
+    fprintf(pfile, str.c_str());
     fclose(pfile);
   }
   else{

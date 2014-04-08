@@ -21,7 +21,7 @@ public:
   ~Parser();
   bool parse();
   bool fileExist();
-  vector<string> getVariables(){return _variables;};
+  vector<string> getVariables(){return _variables;}
 
 private: 
   const char* _path;

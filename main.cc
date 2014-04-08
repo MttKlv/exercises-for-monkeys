@@ -15,16 +15,16 @@ Session* s;
 
 Exercise* e;
 
-int frame;
-
 using namespace std;
+
+int frame;
 
 void keyboard(unsigned char key, int xmouse, int ymouse);
 void mouse(int button, int state, int x, int y);
 bool initApp(int argc, char *argv[]);
 void reshape (int wdth, int heght);
 void display();
-void menu();
+void prepareExercise(vector<string> variables);
 
 int
 main (int argc, char *argv[])
@@ -32,44 +32,34 @@ main (int argc, char *argv[])
   const char *path = "definition.txt";
   Parser *p = new Parser(path);
   if(p->parse()){
-    //   printf("oui\n");
-    exit(1);
+    prepareExercise(p->getVariables());
+    initApp(argc, argv);  
+    return EXIT_SUCCESS;
   }
-  //    printf("nop\n");
-  //exit(0);
-  menu();
-
-  bool b = initApp(argc, argv);
-  return b;
+  std::cout << "parse fail" << endl;
+  return EXIT_FAILURE;
 }
 
-void menu(){
-  int choice = 2;
-  
-  printf("\t1 - Cible au centre, ne bouge pas\n");
-  printf("\t2 - Cible qui se déplace\n");
-  // printf("\t3 - Choix entre animaux ou objets\n");
-  printf("\tSelection => ");
-  cin >> choice; 
+void prepareExercise(vector<string> variables){
+  int choice = atoi((variables.at(0)).c_str());
+
   switch(choice){
   case 1:
-    e = new Basic(100,0,-1);
-    e->menu();
+    e = new Basic(variables);
     break;
   case 2:
-    e = new Basic(100,0,0);
-    e->menu();
+    e = new Basic(variables);
     break;
   }
-  printf("\tTemps entre chaque essai (Frame) => ");
-  cin >> frame;
+  //  printf("\tTemps entre chaque essai (Frame) => ");
+  // cin >> frame;
 }
 
 bool
 initApp(int argc, char *argv[]){
   glutInit (&argc, argv);
   glutInitDisplayMode (GLUT_RGBA | GLUT_SINGLE | GLUT_DOUBLE);
-  // glutInitWindowSize (1920, 1080);
+  glutInitWindowSize (1920, 1080);
   glutCreateWindow (""); // name
   // glutGameModeString("1920x1080:32@60");
   // glutEnterGameMode();
