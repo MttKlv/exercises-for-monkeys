@@ -4,7 +4,6 @@
 
 -include ../makefile.init
 
-RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
@@ -13,6 +12,13 @@ RM := rm -rf
 -include exercises/subdir.mk
 -include parapin/subdir.mk
 -include objects.mk
+
+RM 		:= rm -rf
+CXX 		 = g++
+DEFINES 	 = -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SHARED
+CXXFLAGS	 = -g -pipe -Wall -W -D_REENTRANT $(DEFINES)
+INCPATH		 = -I/usr/share/qt4/mkspecs/linux-g++ -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4 -I/usr/X11R6/include -I.
+LIBS         	+= -L/usr/lib -L/usr/X11R6/lib -lQtOpenGL -lQtGui -lQtCore -lGLU -lGL -lpthread
 
 ifneq ($(MAKECMDGOALS),clean)
 ifneq ($(strip $(C++_DEPS)),)
@@ -46,7 +52,7 @@ all: display
 display: $(OBJS) $(USER_OBJS)
 	@echo -e 'Building target: $@ : \c'
 #	@echo 'Invoking: GCC C++ Linker'
-	@g++  -o" display" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++  -o" display" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo -e '[\033[32mDone\033[0m]'
 #	@echo 'Finished building target: $@'
 

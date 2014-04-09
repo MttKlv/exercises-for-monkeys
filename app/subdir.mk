@@ -20,7 +20,7 @@ CC_DEPS += \
 %.o: ../%.cc
 	@echo -e 'Building file [$<] : \c'
 #	@echo 'Invoking: GCC C++ Compiler'
-	@g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o"$@" "$<"
+	$(CXX) $(CXXFLAGS) $(LIBS) $(INCPATH) -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o"$@" "$<"
 	@echo -e '\033[32mOK\033[0m'
 #	@echo 'Finished building: $<'
 #	@echo ' '

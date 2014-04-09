@@ -1,11 +1,13 @@
 #include <QApplication>
 #include <iostream>
-
+#include "includes/window.hh"
+#include "includes/session.hh"
 int main(int argc, char **argv){
 
     QApplication a(argc, argv);
-
-    GLWidget window(0);
+    Session*s;
+    s = s->createInstance();
+    Window window(0);
     window.resize(500,500);
     window.show();
 }
@@ -22,7 +24,7 @@ int main(int argc, char **argv){
 #include "includes/basic.hh"
 #include "includes/parser.hh"
 #include "includes/parapin.hh"
-
+ $(CXXFLAGS) $(LIBS) $(INCPATH) -o
 Session* Session::_instance = NULL;
 Session* s;
 
@@ -38,7 +40,7 @@ void display();
 void prepareExercise(vector<string> variables);
 
 int
-main (int argc, char *argv[])
+mailn (int argc, char *argv[])
 {
   const char *path = "definition.txt";
   Parser *p = new Parser(path);
