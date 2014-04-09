@@ -1,12 +1,21 @@
+#include <QApplication>
+#include <iostream>
 
-#include <GL/freeglut.h>
-#include <GL/gl.h>
+int main(int argc, char **argv){
 
-#include <math.h>
+    QApplication a(argc, argv);
+
+    GLWidget window(0);
+    window.resize(500,500);
+    window.show();
+}
+
+/*#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/timeb.h>
 #include <iostream>
+
 
 #include "includes/session.hh"
 #include "includes/exercise.hh"
@@ -152,7 +161,7 @@ display()
   s->addFrame();
 }
 
-
+*/
 
 /**********...pour les textures... ********
 
